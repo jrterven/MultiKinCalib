@@ -22,7 +22,7 @@ function varargout = main(varargin)
 
 % Edit the above text to modify the response to help main
 
-% Last Modified by GUIDE v2.5 23-Jul-2016 18:15:43
+% Last Modified by GUIDE v2.5 18-Aug-2016 11:21:17
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -73,52 +73,53 @@ function varargout = main_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in pushbutton1.
-function pushbutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton1 (see GCBO)
+% --- Executes on button press in buttonSetup.
+function buttonSetup_Callback(hObject, eventdata, handles)
+% hObject    handle to buttonSetup (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 initialization
 
-% --- Executes on button press in pushbutton2.
-function pushbutton2_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton2 (see GCBO)
+% --- Executes on button press in buttonDataAcquisition.
+function buttonDataAcquisition_Callback(hObject, eventdata, handles)
+% hObject    handle to buttonDataAcquisition (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
 dataAcq
 
-% --- Executes on button press in pushbutton3.
-function pushbutton3_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton3 (see GCBO)
+% --- Executes on button press in buttonPreCalibration.
+function buttonPreCalibration_Callback(hObject, eventdata, handles)
+% hObject    handle to buttonPreCalibration (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+Step02_PreCalibration(camCount,dataAcqFile,preCalibResultsFile
 
-
-% --- Executes on button press in pushbutton4.
-function pushbutton4_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton4 (see GCBO)
+% --- Executes on button press in buttonMatching.
+function buttonMatching_Callback(hObject, eventdata, handles)
+% hObject    handle to buttonMatching (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+Step03_Matching(camCount,dataAcqFile,minDist3D,matchingResultsFile)
 
-
-% --- Executes on button press in pushbutton5.
-function pushbutton5_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton5 (see GCBO)
+% --- Executes on button press in buttonIntrinsicInit.
+function buttonIntrinsicInit_Callback(hObject, eventdata, handles)
+% hObject    handle to buttonIntrinsicInit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+Step04_IntrinsicParametersEstimation(camCount,dataAcqFile, ...
+    preCalibResultsFile,matchingResultsFile,initIntrinsicsFile)
 
-
-% --- Executes on button press in pushbutton6.
-function pushbutton6_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton6 (see GCBO)
+% --- Executes on button press in buttonNonLinearOptim.
+function buttonNonLinearOptim_Callback(hObject, eventdata, handles)
+% hObject    handle to buttonNonLinearOptim (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+Step05_FinalCalibration(camCount,preCalibResultsFile,initIntrinsicsFile,finalCalibResults)
 
-
-% --- Executes on button press in pushbutton7.
-function pushbutton7_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton7 (see GCBO)
+% --- Executes on button press in buttonExit.
+function buttonExit_Callback(hObject, eventdata, handles)
+% hObject    handle to buttonExit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 close all
@@ -240,8 +241,8 @@ function figure1_CreateFcn(hObject, eventdata, handles)
 setappdata(0,'setupDataAvail',false);
 
 
-% --- Executes on button press in pushbutton8.
-function pushbutton8_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton8 (see GCBO)
+% --- Executes on button press in buttonPointCloudVis.
+function buttonPointCloudVis_Callback(hObject, eventdata, handles)
+% hObject    handle to buttonPointCloudVis (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
